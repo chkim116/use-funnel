@@ -10,16 +10,18 @@ function exhaustiveCheck(value: never): never {
 
 const useFunnel = createUseFunnel(MemoryRouter);
 
+interface FunnelOptions {
+  A: { id?: string };
+  B: { id: string };
+}
+
 describe('Test useFunnel()', () => {
   afterEach(cleanup);
 
   describe('Test useFunnel hook results', () => {
     test('should work useFunnel with component render', async () => {
       function FunnelTest() {
-        const funnel = useFunnel<{
-          A: { id?: string };
-          B: { id: string };
-        }>({
+        const funnel = useFunnel<FunnelOptions>({
           id: 'vitest',
           initial: {
             step: 'A',
@@ -52,10 +54,7 @@ describe('Test useFunnel()', () => {
 
     test('should work funnel.Render', async () => {
       function FunnelRenderTest() {
-        const funnel = useFunnel<{
-          A: { id?: string };
-          B: { id: string };
-        }>({
+        const funnel = useFunnel<FunnelOptions>({
           id: 'vitest',
           initial: {
             step: 'A',
@@ -82,10 +81,7 @@ describe('Test useFunnel()', () => {
 
     test('should work funnel.Render.with', async () => {
       function FunnelWithEventsTest() {
-        const funnel = useFunnel<{
-          A: { id?: string };
-          B: { id: string };
-        }>({
+        const funnel = useFunnel<FunnelOptions>({
           id: 'vitest',
           initial: {
             step: 'A',
@@ -121,10 +117,7 @@ describe('Test useFunnel()', () => {
 
     test('should work funnel.Render.overlay', async () => {
       function FunnelRenderTest() {
-        const funnel = useFunnel<{
-          A: { id?: string };
-          B: { id: string };
-        }>({
+        const funnel = useFunnel<FunnelOptions>({
           id: 'vitest',
           initial: {
             step: 'A',

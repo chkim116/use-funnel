@@ -1,15 +1,14 @@
 import { FunnelRouterTransitionOption } from './router.js';
 import { CompareMergeContext } from './typeUtil.js';
 
-export type AnyContext = Record<string, any>;
-export type AnyStepContextMap = Record<string, AnyContext>;
+export type AnyStepContextMap = Record<string, any>;
 
 export interface FunnelState<TName extends string, TContext = never> {
   step: TName;
   context: TContext;
 }
 
-export type AnyFunnelState = FunnelState<string, AnyContext>;
+export type AnyFunnelState = FunnelState<string, AnyStepContextMap>;
 export type GetFunnelStateByName<TFunnelState extends AnyFunnelState, TName extends TFunnelState['step']> = Extract<
   TFunnelState,
   { step: TName }
